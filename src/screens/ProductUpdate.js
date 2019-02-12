@@ -9,8 +9,9 @@ import {
   Textarea,
   Button
 } from 'native-base';
+import Axios from 'axios';
 
-export class ProductAdd extends Component {
+export class ProductUpdate extends Component {
   state = {
     product: {
       name: '',
@@ -21,17 +22,38 @@ export class ProductAdd extends Component {
     }
   };
 
-  // handleChange = event => {
-  //   const { name, value } = event.target;
-  //   alert(name);
-  //   // this.setState({ [this.state.product[name]]: value });
-  //   // this.setState(Object.assign(this.state.product, { [name]: value }));
-  // };
+  componentDidMount() {
+    const {
+      name,
+      shop,
+      price,
+      description
+    } = this.props.navigation.state.params;
+
+    this.setState(
+      Object.assign(this.state.product, {
+        name,
+        shop,
+        price,
+        description
+      })
+    );
+  }
+
+  handlePressUpdate = async product => {
+    const { id } = this.props.navigation.state.params;
+    await Axios.patch(
+      `http://192.168.0.9:3333/api/v1/products/${id}`,
+      product
+    ).then(res => alert(JSON.stringify(res.data.status)));
+
+    this.props.navigation.push('ProductDetail', product);
+    // this.props.navigation.goBack();
+  };
 
   render() {
-    const { onPressAdd } = this.props.navigation.state.params;
-    const { name } = this.state.product;
     const { product } = this.state;
+    const { name, price, shop, description } = this.state.product;
 
     return (
       <Container>
@@ -39,6 +61,7 @@ export class ProductAdd extends Component {
           <Form>
             <Item style={{ marginBottom: 10 }} rounded>
               <Input
+                value={name}
                 onChangeText={name =>
                   this.setState(
                     Object.assign(this.state.product, { name: name })
@@ -48,19 +71,9 @@ export class ProductAdd extends Component {
                 placeholder="Name product"
               />
             </Item>
-            {/* <Item style={{ marginBottom: 10 }} rounded>
-              <Input
-                style={{ fontSize: 20 }}
-                placeholder="Image"
-                onChangeText={image =>
-                  this.setState(
-                    Object.assign(this.state.product, { image: image })
-                  )
-                }
-              />
-            </Item> */}
             <Item style={{ marginBottom: 10 }} rounded>
               <Input
+                value={shop}
                 style={{ fontSize: 20 }}
                 placeholder="Shop"
                 onChangeText={shop =>
@@ -72,6 +85,7 @@ export class ProductAdd extends Component {
             </Item>
             <Item style={{ marginBottom: 10 }} rounded>
               <Input
+                value={price.toString()}
                 style={{ fontSize: 20 }}
                 placeholder="Price"
                 onChangeText={price =>
@@ -83,6 +97,7 @@ export class ProductAdd extends Component {
             </Item>
             <Item rounded>
               <Textarea
+                value={description}
                 style={{ flex: 1, fontSize: 20 }}
                 rowSpan={10}
                 placeholder="Description"
@@ -101,13 +116,13 @@ export class ProductAdd extends Component {
           style={{ marginHorizontal: 10, marginBottom: 10 }}
           block
           rounded
-          onPress={() => onPressAdd(product)}
+          onPress={() => this.handlePressUpdate(product)}
         >
-          <Text style={{ fontSize: 20, color: 'white' }}>Add Product</Text>
+          <Text style={{ fontSize: 20, color: 'white' }}>Update Product</Text>
         </Button>
       </Container>
     );
   }
 }
 
-export default ProductAdd;
+export default ProductUpdate;

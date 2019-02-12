@@ -5,6 +5,7 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import ProductList from './src/screens/ProductList';
 import ProductDetail from './src/screens/ProductDetail';
 import ProductAdd from './src/screens/ProductAdd';
+import ProductUpdate from './src/screens/ProductUpdate';
 
 export default class App extends Component {
   render() {
@@ -15,7 +16,8 @@ export default class App extends Component {
 const AppNavigator = createStackNavigator({
   ProductList,
   ProductDetail,
-  ProductAdd
+  ProductAdd,
+  ProductUpdate
 });
 
 const AppContainer = createAppContainer(AppNavigator);

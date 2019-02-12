@@ -6,7 +6,9 @@ import {
   Card,
   CardItem,
   Body,
-  Text
+  Text,
+  Icon,
+  Button
 } from 'native-base';
 
 export class ProductDetail extends Component {
@@ -18,6 +20,8 @@ export class ProductDetail extends Component {
       price,
       description
     } = this.props.navigation.state.params;
+
+    const product = this.props.navigation.state.params;
 
     return (
       <Container>
@@ -31,6 +35,15 @@ export class ProductDetail extends Component {
             source={{ uri: image }}
           />
           <Card noShadow style={{ borderTopWidth: 10, borderRadius: 30 }}>
+            <Button
+              onPress={() =>
+                this.props.navigation.navigate('ProductUpdate', product)
+              }
+              style={{ position: 'relative', alignSelf: 'flex-end' }}
+              transparent
+            >
+              <Icon name="add" />
+            </Button>
             <CardItem header>
               <Text style={{ fontSize: 25 }}>{name}</Text>
             </CardItem>
