@@ -10,8 +10,36 @@ import {
   Icon,
   Button
 } from 'native-base';
+import { HeaderBackButton } from 'react-navigation';
 
 export class ProductDetail extends Component {
+  // static navigationOptions = {
+  //   title: 'Product Detail',
+  //   // headerLeft: (
+  //   //   <Button transparent onPress={() => alert('tes')} color="blue">
+  //   //     <Icon name="left-arrow" />
+  //   //   </Button>
+  //   // )
+  //   // headerLeft: (
+  //   //   <HeaderBackButton
+  //   //     onPress={() => {
+  //   //       this.props.navigation.push('ProductList');
+  //   //     }}
+  //   //   />
+  //   // )
+  // };
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerLeft: (
+        <HeaderBackButton
+          onPress={() => {
+            navigation.push('ProductList');
+          }}
+        />
+      )
+    };
+  };
+
   render() {
     const {
       name,

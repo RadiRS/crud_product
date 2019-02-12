@@ -12,6 +12,10 @@ import {
 import Axios from 'axios';
 
 export class ProductUpdate extends Component {
+  static navigationOptions = {
+    title: 'Form Update Product'
+  };
+
   state = {
     product: {
       name: '',
@@ -48,7 +52,6 @@ export class ProductUpdate extends Component {
     ).then(res => alert(JSON.stringify(res.data.status)));
 
     this.props.navigation.push('ProductDetail', product);
-    // this.props.navigation.goBack();
   };
 
   render() {

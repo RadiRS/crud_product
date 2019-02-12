@@ -15,6 +15,11 @@ import {
 } from 'native-base';
 
 export class ProductList extends Component {
+  static navigationOptions = {
+    title: 'Product List',
+    headerLeft: null
+  };
+
   state = {
     data: []
   };

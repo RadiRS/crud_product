@@ -11,6 +11,10 @@ import {
 } from 'native-base';
 
 export class ProductAdd extends Component {
+  static navigationOptions = {
+    title: 'Form Add Product'
+  };
+
   state = {
     product: {
       name: '',
