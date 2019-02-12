@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 // Screens
-import ProductDetail from './src/screens/ProductDetail';
 import ProductList from './src/screens/ProductList';
+import ProductDetail from './src/screens/ProductDetail';
 import ProductAdd from './src/screens/ProductAdd';
 
 export default class App extends Component {

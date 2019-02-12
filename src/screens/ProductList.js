@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import axios from 'axios';
+
 import {
   Container,
   Content,
@@ -11,7 +13,6 @@ import {
   Button,
   Fab
 } from 'native-base';
-import axios from 'axios';
 
 export class ProductList extends Component {
   state = {
@@ -30,6 +31,10 @@ export class ProductList extends Component {
     this.setState({ data: result.data });
   };
 
+  handlePressAdd = async product => {
+    alert(JSON.stringify(product));
+  };
+
   render() {
     const { navigate } = this.props.navigation;
 
@@ -39,7 +44,7 @@ export class ProductList extends Component {
           <List>
             {this.state.data.map(product => (
               <ListItem
-                onPress={() => navigate('ProductDetail')}
+                onPress={() => navigate('ProductDetail', product)}
                 key={product.id}
               >
                 <View
@@ -72,7 +77,11 @@ export class ProductList extends Component {
           <Fab
             style={{ backgroundColor: '#5067FF' }}
             position="bottomRight"
-            onPress={() => navigate('ProductAdd')}
+            onPress={() =>
+              navigate('ProductAdd', {
+                onPressAdd: this.handlePressAdd
+              })
+            }
           >
             <Icon name="md-add" />
           </Fab>
