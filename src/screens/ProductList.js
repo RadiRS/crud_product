@@ -31,12 +31,17 @@ export class ProductList extends Component {
   };
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <Container>
         <Content>
           <List>
             {this.state.data.map(product => (
-              <ListItem onPress={() => alert(product.name)} key={product.id}>
+              <ListItem
+                onPress={() => navigate('ProductDetail')}
+                key={product.id}
+              >
                 <View
                   style={{
                     flex: 1,
@@ -67,7 +72,7 @@ export class ProductList extends Component {
           <Fab
             style={{ backgroundColor: '#5067FF' }}
             position="bottomRight"
-            onPress={() => this.props.navigation.navigate('ProductAdd')}
+            onPress={() => navigate('ProductAdd')}
           >
             <Icon name="md-add" />
           </Fab>
