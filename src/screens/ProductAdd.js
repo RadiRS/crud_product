@@ -13,17 +13,24 @@ import {
 export class ProductAdd extends Component {
   state = {
     product: {
-      name: 'Lorem, ipsum.',
-      shop: 'Iekkdi',
-      price: '1293000',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, aliquid?',
+      name: '',
+      shop: '',
+      price: '',
+      description: '',
       image: 'http://lorempixel.com/640/480'
     }
   };
 
+  // handleChange = event => {
+  //   const { name, value } = event.target;
+  //   alert(name);
+  //   // this.setState({ [this.state.product[name]]: value });
+  //   // this.setState(Object.assign(this.state.product, { [name]: value }));
+  // };
+
   render() {
     const { onPressAdd } = this.props.navigation.state.params;
+    const { name } = this.state.product;
     const { product } = this.state;
 
     return (
@@ -31,22 +38,63 @@ export class ProductAdd extends Component {
         <Content padder>
           <Form>
             <Item style={{ marginBottom: 10 }} rounded>
-              <Input style={{ fontSize: 20 }} placeholder="Name product" />
+              <Input
+                name="name"
+                value={name}
+                onChangeText={name =>
+                  this.setState(
+                    Object.assign(this.state.product, { name: name })
+                  )
+                }
+                style={{ fontSize: 20 }}
+                placeholder="Name product"
+              />
             </Item>
             <Item style={{ marginBottom: 10 }} rounded>
-              <Input style={{ fontSize: 20 }} placeholder="Image" />
+              <Input
+                style={{ fontSize: 20 }}
+                placeholder="Image"
+                onChangeText={image =>
+                  this.setState(
+                    Object.assign(this.state.product, { image: image })
+                  )
+                }
+              />
             </Item>
             <Item style={{ marginBottom: 10 }} rounded>
-              <Input style={{ fontSize: 20 }} placeholder="Shop" />
+              <Input
+                style={{ fontSize: 20 }}
+                placeholder="Shop"
+                onChangeText={shop =>
+                  this.setState(
+                    Object.assign(this.state.product, { shop: shop })
+                  )
+                }
+              />
             </Item>
             <Item style={{ marginBottom: 10 }} rounded>
-              <Input style={{ fontSize: 20 }} placeholder="Price" />
+              <Input
+                style={{ fontSize: 20 }}
+                placeholder="Price"
+                onChangeText={price =>
+                  this.setState(
+                    Object.assign(this.state.product, { price: price })
+                  )
+                }
+              />
             </Item>
             <Item rounded>
               <Textarea
                 style={{ flex: 1, fontSize: 20 }}
                 rowSpan={5}
                 placeholder="Description"
+                onChangeText={description =>
+                  this.setState(
+                    Object.assign(this.state.product, {
+                      description: description
+                    })
+                  )
+                }
               />
             </Item>
           </Form>

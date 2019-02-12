@@ -44,7 +44,7 @@ export class ProductDetail extends Component {
               style={{ flexDirection: 'row', justifyContent: 'space-between' }}
             >
               <Text style={{ fontSize: 20 }}>{shop}</Text>
-              <Text style={{ fontSize: 20 }}>{price}</Text>
+              <Text style={{ fontSize: 20 }}>Rp{price}</Text>
             </CardItem>
           </Card>
         </Content>

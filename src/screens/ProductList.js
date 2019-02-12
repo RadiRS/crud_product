@@ -21,6 +21,7 @@ export class ProductList extends Component {
 
   async componentDidMount() {
     const result = await axios.get('http://192.168.0.9:3333/api/v1/products');
+    // alert(JSON.stringify(result.data));
     this.setState({ data: result.data });
   }
 
@@ -32,11 +33,16 @@ export class ProductList extends Component {
   };
 
   handlePressAdd = async product => {
-    alert(JSON.stringify(product));
+    // alert(JSON.stringify(product));
+    await axios
+      .post('http://192.168.0.9:3333/api/v1/products', product)
+      .then(res => alert(JSON.stringify(res.data.status)));
+
+    this.props.navigation.push('ProductList');
   };
 
   render() {
-    const { navigate } = this.props.navigation;
+    const { navigate, push } = this.props.navigation;
 
     return (
       <Container>
@@ -73,12 +79,12 @@ export class ProductList extends Component {
             ))}
           </List>
         </Content>
-        <View style={{ flex: 1 }}>
+        <View style={{ position: 'relative' }}>
           <Fab
             style={{ backgroundColor: '#5067FF' }}
             position="bottomRight"
             onPress={() =>
-              navigate('ProductAdd', {
+              push('ProductAdd', {
                 onPressAdd: this.handlePressAdd
               })
             }
