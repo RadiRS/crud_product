@@ -1,8 +1,8 @@
-## Daily Task Arkademy
+## Daily Project Arkademy
 
 ### CRUD Product with REST API AdonisJS
 
-Tugas harian minggu ke-dua bootcamp **Arkademy**. Membuat aplikasi CRUD sederhana dengan React Native dan AdonisJS
+project harian minggu ke-dua bootcamp **Arkademy**. Membuat aplikasi CRUD sederhana dengan React Native dan AdonisJS
 
 ### Tech :
 

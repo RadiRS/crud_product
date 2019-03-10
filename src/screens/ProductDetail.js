@@ -30,6 +30,7 @@ export class ProductDetail extends Component {
   // };
   static navigationOptions = ({ navigation }) => {
     return {
+      title: 'Product Detail',
       headerLeft: (
         <HeaderBackButton
           onPress={() => {
@@ -70,7 +71,8 @@ export class ProductDetail extends Component {
               style={{ position: 'relative', alignSelf: 'flex-end' }}
               transparent
             >
-              <Icon name="add" />
+              {/* <Icon name="" /> */}
+              <Text style={{ fontSize: 20 }}>Edit</Text>
             </Button>
             <CardItem header>
               <Text style={{ fontSize: 25 }}>{name}</Text>
